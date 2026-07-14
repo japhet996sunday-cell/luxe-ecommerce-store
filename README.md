@@ -23,7 +23,7 @@ A premium frontend-only eCommerce website built using HTML, CSS, and vanilla Jav
 
 ## Live Demo
 
-https://japhet996sunday-cell.github.io/luxe-ecommerce-store/
+https://luxe-ecommerce-live.netlify.app/
 
 ## Developer
 
