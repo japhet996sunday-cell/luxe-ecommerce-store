@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop All — LUXE</title>
+<meta name="description" content="Browse the full LUXE collection — outerwear, footwear, knitwear, and more.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,300..500,0..1,0">
+
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  .shop-header {
+    padding-block: var(--sp-8) var(--sp-6);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .shop-header h1 { margin-top: var(--sp-2); }
+  .shop-header p { max-width: 52ch; margin-top: var(--sp-3); }
+
+  .shop-layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: var(--sp-7);
+    align-items: start;
+    padding-block: var(--sp-7);
+  }
+
+  /* ---------- Filters sidebar ---------- */
+  .filters {
+    position: sticky;
+    top: calc(72px + var(--sp-5));
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-7);
+  }
+  .filter-group__title {
+    font-family: var(--font-mono);
+    font-size: var(--fs-2xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-stone);
+    margin-bottom: var(--sp-4);
+  }
+  .filter-option {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+    padding-block: var(--sp-2);
+    font-size: var(--fs-sm);
+    cursor: pointer;
+    color: var(--color-ink-soft);
+  }
+  .filter-option input[type="checkbox"],
+  .filter-option input[type="radio"] {
+    appearance: none;
+    width: 16px; height: 16px;
+    border: 1px solid var(--color-border-strong);
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background var(--dur-fast), border-color var(--dur-fast);
+  }
+  .filter-option input[type="radio"] { border-radius: 50%; }
+  .filter-option input:checked {
+    background: var(--color-ink);
+    border-color: var(--color-ink);
+  }
+  .filter-option input:checked::after {
+    content: '';
+    width: 5px; height: 8px;
+    border: solid var(--color-canvas);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg) translate(-1px, -1px);
+  }
+  .filter-option input[type="radio"]:checked::after {
+    width: 6px; height: 6px;
+    border: none;
+    background: var(--color-canvas);
+    border-radius: 50%;
+    transform: none;
+  }
+  .filter-option__count { margin-left: auto; color: var(--color-stone-light); font-family: var(--font-mono); font-size: var(--fs-2xs); }
+
+  .price-range { display: flex; flex-direction: column; gap: var(--sp-3); }
+  .price-range input[type="range"] {
+    width: 100%;
+    accent-color: var(--color-brass-dark);
+  }
+  .price-range__value { font-family: var(--font-mono); font-size: var(--fs-sm); }
+
+  .filter-clear { font-size: var(--fs-xs); color: var(--color-stone); text-decoration: underline; text-underline-offset: 3px; align-self: flex-start; background: none; border: none; }
+  .filter-clear:hover { color: var(--color-ink); }
+
+  /* ---------- Toolbar ---------- */
+  .shop-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-4);
+    margin-bottom: var(--sp-6);
+    flex-wrap: wrap;
+  }
+  .shop-toolbar__count { font-size: var(--fs-sm); color: var(--color-stone); }
+  .shop-toolbar__right { display: flex; align-items: center; gap: var(--sp-3); }
+  .shop-search {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-full);
+    padding: var(--sp-2) var(--sp-4);
+    background: var(--color-canvas-raised);
+  }
+  .shop-search input {
+    border: none; background: none; outline: none;
+    font-size: var(--fs-sm); color: var(--color-ink);
+    width: 180px;
+  }
+  .shop-search .material-symbols-outlined { font-size: 18px; color: var(--color-stone); }
+
+  .sort-select {
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-full);
+    padding: var(--sp-2) var(--sp-5) var(--sp-2) var(--sp-4);
+    background: var(--color-canvas-raised);
+    color: var(--color-ink);
+    font-size: var(--fs-sm);
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B6862' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+  }
+
+  .filter-mobile-toggle { display: none; }
+
+  .empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding-block: var(--sp-9);
+  }
+  .empty-state .material-symbols-outlined { font-size: 48px; color: var(--color-stone-light); margin-bottom: var(--sp-4); }
+  .empty-state h3 { margin-bottom: var(--sp-2); }
+  .empty-state p { margin-bottom: var(--sp-5); }
+
+  @media (max-width: 900px) {
+    .shop-layout { grid-template-columns: 1fr; }
+    .filters {
+      position: fixed;
+      inset: 0;
+      z-index: 850;
+      background: var(--color-canvas);
+      padding: var(--sp-6) var(--container-pad);
+      overflow-y: auto;
+      transform: translateX(-100%);
+      transition: transform var(--dur-med) var(--ease-out);
+    }
+    .filters.is-open { transform: translateX(0); }
+    .filter-mobile-toggle { display: inline-flex; }
+    .filters-close { display: flex; justify-content: flex-end; margin-bottom: var(--sp-5); }
+  }
+
+  @media (max-width: 560px) {
+    .shop-search input { width: 120px; }
+  }
+</style>
+</head>
+<body data-depth="0">
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!-- ================= NAVBAR ================= -->
+<header class="navbar">
+  <div class="container" style="display:flex; align-items:center; justify-content:space-between; width:100%;">
+    <a href="index.html" class="navbar__logo">LUXE</a>
+    <nav class="navbar__links" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="products.html" aria-current="page">Shop</a>
+      <a href="products.html">Categories</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="navbar__actions">
+      <button class="icon-btn" data-search-open aria-label="Search">
+        <span class="material-symbols-outlined">search</span>
+      </button>
+      <button class="icon-btn" data-theme-toggle aria-label="Toggle dark mode">
+        <span class="material-symbols-outlined" data-theme-icon>dark_mode</span>
+      </button>
+      <a href="wishlist.html" class="icon-btn" aria-label="Wishlist">
+        <span class="material-symbols-outlined">favorite</span>
+        <span class="icon-btn__badge" data-wishlist-count style="display:none;">0</span>
+      </a>
+      <a href="cart.html" class="icon-btn" aria-label="Cart">
+        <span class="material-symbols-outlined">shopping_bag</span>
+        <span class="icon-btn__badge" data-cart-count style="display:none;">0</span>
+      </a>
+      <button class="icon-btn navbar__mobile-toggle" data-mobile-toggle aria-label="Open menu">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" data-mobile-menu>
+  <div class="mobile-menu__header">
+    <span class="navbar__logo">LUXE</span>
+    <button class="icon-btn" data-mobile-close aria-label="Close menu">
+      <span class="material-symbols-outlined">close</span>
+    </button>
+  </div>
+  <nav class="mobile-menu__links" aria-label="Mobile">
+    <a href="index.html">Home</a>
+    <a href="products.html">Shop</a>
+    <a href="products.html">Categories</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</div>
+
+<div class="search-overlay" data-search-overlay>
+  <div class="search-overlay__panel">
+    <div style="display:flex; align-items:center; gap:var(--sp-3);">
+      <span class="material-symbols-outlined" style="color:var(--color-stone);">search</span>
+      <input type="text" class="search-overlay__input" data-search-input placeholder="Search products…" aria-label="Search products">
+      <button class="icon-btn" data-search-close aria-label="Close search">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <div class="search-overlay__results" data-search-results></div>
+  </div>
+</div>
+
+<main id="main">
+  <div class="shop-header container">
+    <span class="eyebrow">Full collection</span>
+    <h1>Shop all</h1>
+    <p>Twenty-four pieces across seven categories — filter by category, price, or rating, or search by name.</p>
+  </div>
+
+  <div class="container shop-layout">
+    <!-- ================= FILTERS ================= -->
+    <aside class="filters" data-filters aria-label="Filters">
+      <div class="filters-close">
+        <button class="icon-btn" data-filters-close aria-label="Close filters">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-group__title">Category</div>
+        <div data-category-filters></div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-group__title">Price</div>
+        <div class="price-range">
+          <input type="range" min="0" max="500" step="10" value="500" data-price-max aria-label="Maximum price">
+          <span class="price-range__value">Up to <span class="price" data-price-max-label>$500</span></span>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-group__title">Minimum rating</div>
+        <div data-rating-filters>
+          <label class="filter-option"><input type="radio" name="rating" value="0" checked> Any rating</label>
+          <label class="filter-option"><input type="radio" name="rating" value="4.5"> 4.5 & up</label>
+          <label class="filter-option"><input type="radio" name="rating" value="4"> 4.0 & up</label>
+          <label class="filter-option"><input type="radio" name="rating" value="3.5"> 3.5 & up</label>
+        </div>
+      </div>
+
+      <button class="filter-clear" data-clear-filters>Clear all filters</button>
+    </aside>
+
+    <!-- ================= RESULTS ================= -->
+    <div>
+      <div class="shop-toolbar">
+        <button class="btn btn--secondary filter-mobile-toggle" data-filters-open>
+          <span class="material-symbols-outlined" style="font-size:18px;">tune</span> Filters
+        </button>
+        <span class="shop-toolbar__count" data-result-count>24 products</span>
+        <div class="shop-toolbar__right">
+          <div class="shop-search">
+            <span class="material-symbols-outlined">search</span>
+            <input type="text" placeholder="Search…" data-inline-search aria-label="Search within shop">
+          </div>
+          <select class="sort-select" data-sort aria-label="Sort products">
+            <option value="popularity">Popularity</option>
+            <option value="newest">Newest</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="product-grid" id="results-grid" aria-live="polite"></div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand">LUXE</div>
+        <p class="footer__tagline">A considered wardrobe — wool, leather, and silk pieces built to outlast the season.</p>
+      </div>
+      <div>
+        <div class="footer__heading">Shop</div>
+        <nav class="footer__links">
+          <a href="products.html">All Products</a>
+          <a href="products.html">New Arrivals</a>
+          <a href="products.html">Best Sellers</a>
+          <a href="wishlist.html">Wishlist</a>
+        </nav>
+      </div>
+      <div>
+        <div class="footer__heading">Company</div>
+        <nav class="footer__links">
+          <a href="about.html">About Us</a>
+          <a href="contact.html">Contact</a>
+          <a href="contact.html">Shipping & Returns</a>
+        </nav>
+      </div>
+      <div>
+        <div class="footer__heading">Connect</div>
+        <nav class="footer__links">
+          <a href="#">Instagram</a>
+          <a href="#">Pinterest</a>
+          <a href="mailto:hello@luxe.example">hello@luxe.example</a>
+        </nav>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 LUXE. All rights reserved.</span>
+      <div class="footer__social">
+        <span class="eyebrow" style="border:none;">Crafted in vanilla JS</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" data-back-to-top aria-label="Back to top">
+  <span class="material-symbols-outlined">arrow_upward</span>
+</button>
+
+<script src="assets/js/app.js"></script>
+<script src="assets/js/products.js"></script>
+<script>
+(async function initShop() {
+  const allProducts = await LUXE.getProducts();
+  const grid = document.getElementById('results-grid');
+  const countLabel = document.getElementById('results-grid') && document.querySelector('[data-result-count]');
+  const params = new URLSearchParams(window.location.search);
+
+  const state = {
+    search: '',
+    categories: new Set(),
+    maxPrice: 500,
+    minRating: 0,
+    sort: params.get('sort') || 'popularity',
+  };
+
+  if (params.get('category')) state.categories.add(params.get('category'));
+
+  // Build category filter checkboxes
+  const categories = [...new Set(allProducts.map(p => p.category))].sort();
+  const catContainer = document.querySelector('[data-category-filters]');
+  catContainer.innerHTML = categories.map(cat => {
+    const count = allProducts.filter(p => p.category === cat).length;
+    const checked = state.categories.has(cat) ? 'checked' : '';
+    return `
+      <label class="filter-option">
+        <input type="checkbox" value="${cat}" data-cat-checkbox ${checked}>
+        ${cat}
+        <span class="filter-option__count">${count}</span>
+      </label>
+    `;
+  }).join('');
+
+  function applyFiltersAndRender() {
+    let results = allProducts.filter(p => {
+      if (state.search && !p.name.toLowerCase().includes(state.search) && !p.category.toLowerCase().includes(state.search)) return false;
+      if (state.categories.size && !state.categories.has(p.category)) return false;
+      if (p.price > state.maxPrice) return false;
+      if (p.rating < state.minRating) return false;
+      return true;
+    });
+
+    switch (state.sort) {
+      case 'newest':
+        results.sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded));
+        break;
+      case 'price-low':
+        results.sort((a, b) => a.price - b.price);
+        break;
+      case 'price-high':
+        results.sort((a, b) => b.price - a.price);
+        break;
+      default: // popularity
+        results.sort((a, b) => (b.isBestSeller === a.isBestSeller) ? b.reviews - a.reviews : (b.isBestSeller ? 1 : -1));
+    }
+
+    document.querySelector('[data-result-count]').textContent = `${results.length} product${results.length !== 1 ? 's' : ''}`;
+
+    grid.innerHTML = results.length
+      ? results.map(LUXEProducts.renderCard).join('')
+      : `
+        <div class="empty-state">
+          <span class="material-symbols-outlined">search_off</span>
+          <h3>No products match your filters</h3>
+          <p>Try widening your price range or clearing a filter.</p>
+          <button class="btn btn--secondary" data-clear-filters-inline>Clear all filters</button>
+        </div>
+      `;
+
+    LUXEProducts.bindCardEvents(grid);
+    document.querySelector('[data-clear-filters-inline]')?.addEventListener('click', clearFilters);
+    document.dispatchEvent(new CustomEvent('luxe:content-rendered'));
+  }
+
+  function clearFilters() {
+    state.search = '';
+    state.categories.clear();
+    state.maxPrice = 500;
+    state.minRating = 0;
+    document.querySelector('[data-inline-search]').value = '';
+    catContainer.querySelectorAll('input').forEach(cb => cb.checked = false);
+    document.querySelector('[data-price-max]').value = 500;
+    document.querySelector('[data-price-max-label]').textContent = '$500';
+    document.querySelector('input[name="rating"][value="0"]').checked = true;
+    applyFiltersAndRender();
+  }
+
+  // Wire up controls
+  let searchDebounce;
+  document.querySelector('[data-inline-search]').addEventListener('input', (e) => {
+    clearTimeout(searchDebounce);
+    searchDebounce = setTimeout(() => {
+      state.search = e.target.value.trim().toLowerCase();
+      applyFiltersAndRender();
+    }, 200);
+  });
+
+  catContainer.addEventListener('change', (e) => {
+    if (e.target.matches('[data-cat-checkbox]')) {
+      e.target.checked ? state.categories.add(e.target.value) : state.categories.delete(e.target.value);
+      applyFiltersAndRender();
+    }
+  });
+
+  const priceInput = document.querySelector('[data-price-max]');
+  priceInput.addEventListener('input', (e) => {
+    state.maxPrice = Number(e.target.value);
+    document.querySelector('[data-price-max-label]').textContent = state.maxPrice >= 500 ? '$500+' : `$${state.maxPrice}`;
+    applyFiltersAndRender();
+  });
+
+  document.querySelectorAll('input[name="rating"]').forEach((radio) => {
+    radio.addEventListener('change', (e) => {
+      state.minRating = Number(e.target.value);
+      applyFiltersAndRender();
+    });
+  });
+
+  document.querySelector('[data-sort]').value = state.sort;
+  document.querySelector('[data-sort]').addEventListener('change', (e) => {
+    state.sort = e.target.value;
+    applyFiltersAndRender();
+  });
+
+  document.querySelector('[data-clear-filters]').addEventListener('click', clearFilters);
+
+  // Mobile filter drawer
+  const filtersEl = document.querySelector('[data-filters]');
+  document.querySelector('[data-filters-open]')?.addEventListener('click', () => {
+    filtersEl.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  });
+  document.querySelector('[data-filters-close]')?.addEventListener('click', () => {
+    filtersEl.classList.remove('is-open');
+    document.body.style.overflow = '';
+  });
+
+  applyFiltersAndRender();
+})();
+</script>
+</body>
+</html>
