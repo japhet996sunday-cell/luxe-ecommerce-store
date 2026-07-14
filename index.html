@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LUXE — Considered Clothing</title>
+<meta name="description" content="LUXE is a considered wardrobe: wool, leather, and silk pieces built to outlast the season.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,300..500,0..1,0">
+
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  /* Page-specific: Home */
+  .hero {
+    position: relative;
+    min-height: 92vh;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: var(--sp-9);
+    overflow: hidden;
+  }
+  .hero__media {
+    position: absolute; inset: 0;
+    z-index: -1;
+  }
+  .hero__media img {
+    width: 100%; height: 100%; object-fit: cover;
+    animation: hero-zoom 16s var(--ease-out) forwards;
+  }
+  @keyframes hero-zoom { from { transform: scale(1.08); } to { transform: scale(1); } }
+  .hero__media::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(0deg, rgba(20,20,18,0.72) 0%, rgba(20,20,18,0.18) 45%, rgba(20,20,18,0.05) 100%);
+  }
+  .hero__content { max-width: 640px; color: #FAFAF9; }
+  .hero__content .eyebrow { color: #D4B583; }
+  .hero__content .eyebrow::before { background: #D4B583; }
+  .hero h1 { color: #FAFAF9; font-size: clamp(2.75rem, 6vw, var(--fs-5xl)); margin-block: var(--sp-4) var(--sp-5); }
+  .hero p { color: rgba(250,250,249,0.82); font-size: var(--fs-md); max-width: 46ch; margin-bottom: var(--sp-6); }
+  .hero__actions { display: flex; gap: var(--sp-4); flex-wrap: wrap; }
+  .hero .btn--secondary { border-color: rgba(250,250,249,0.4); color: #FAFAF9; }
+  .hero .btn--secondary:hover { border-color: #FAFAF9; }
+
+  /* Category rail */
+  .category-rail {
+    display: flex;
+    gap: var(--sp-4);
+    overflow-x: auto;
+    padding-bottom: var(--sp-3);
+    scrollbar-width: none;
+  }
+  .category-rail::-webkit-scrollbar { display: none; }
+  .category-tile {
+    position: relative;
+    flex: 0 0 auto;
+    width: 260px;
+    aspect-ratio: 4/5;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .category-tile img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--dur-slow) var(--ease-out); }
+  .category-tile:hover img { transform: scale(1.06); }
+  .category-tile::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(0deg, rgba(20,20,18,0.75) 0%, transparent 55%);
+  }
+  .category-tile__label {
+    position: absolute; left: var(--sp-4); bottom: var(--sp-4);
+    color: #FAFAF9;
+    font-family: var(--font-display);
+    font-size: var(--fs-lg);
+    z-index: 1;
+  }
+
+  /* Promo banner */
+  .promo-banner {
+    border-radius: var(--radius-lg);
+    background: var(--color-ink);
+    color: var(--color-canvas);
+    padding: var(--sp-9) var(--sp-7);
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    align-items: center;
+    gap: var(--sp-6);
+    overflow: hidden;
+    position: relative;
+  }
+  [data-theme="dark"] .promo-banner { background: var(--color-canvas-raised); border: 1px solid var(--color-border); }
+  .promo-banner h2 { color: inherit; }
+  .promo-banner p { color: rgba(250,250,249,0.75); }
+  [data-theme="dark"] .promo-banner p { color: var(--color-stone); }
+  .promo-banner__media { border-radius: var(--radius-md); overflow: hidden; aspect-ratio: 16/10; }
+  .promo-banner__media img { width: 100%; height: 100%; object-fit: cover; }
+  .promo-banner .btn--primary { background: var(--color-brass-dark); color: var(--color-ink); margin-top: var(--sp-5); }
+  .promo-banner .btn--primary:hover { background: var(--color-brass); }
+
+  /* Testimonials */
+  .testimonial-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-5); }
+  .testimonial-card {
+    background: var(--color-canvas-raised);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--sp-6);
+  }
+  .testimonial-card__stars { color: var(--color-brass-dark); display: flex; gap: 2px; margin-bottom: var(--sp-4); }
+  .testimonial-card__stars .material-symbols-outlined { font-size: 16px; font-variation-settings: 'FILL' 1; }
+  .testimonial-card p { color: var(--color-ink-soft); font-size: var(--fs-sm); margin-bottom: var(--sp-5); }
+  .testimonial-card__author { display: flex; align-items: center; gap: var(--sp-3); }
+  .testimonial-card__avatar {
+    width: 40px; height: 40px; border-radius: 50%; overflow: hidden; flex-shrink: 0;
+  }
+  .testimonial-card__avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .testimonial-card__name { font-size: var(--fs-sm); font-weight: 600; }
+  .testimonial-card__role { font-size: var(--fs-xs); color: var(--color-stone); }
+
+  /* Newsletter */
+  .newsletter {
+    text-align: center;
+    max-width: 560px;
+    margin-inline: auto;
+  }
+  .newsletter h2 { margin-bottom: var(--sp-3); }
+  .newsletter-form {
+    display: flex;
+    gap: var(--sp-3);
+    margin-top: var(--sp-6);
+  }
+  .newsletter-form input {
+    flex: 1;
+    padding: var(--sp-4) var(--sp-5);
+    border-radius: var(--radius-full);
+    border: 1px solid var(--color-border-strong);
+    background: var(--color-canvas-raised);
+    color: var(--color-ink);
+    font-size: var(--fs-sm);
+  }
+  .newsletter-form input:focus { outline: none; border-color: var(--color-brass-dark); }
+  .newsletter-note { font-size: var(--fs-xs); color: var(--color-stone-light); margin-top: var(--sp-3); }
+
+  @media (max-width: 860px) {
+    .promo-banner { grid-template-columns: 1fr; text-align: left; }
+    .testimonial-grid { grid-template-columns: 1fr; }
+    .newsletter-form { flex-direction: column; }
+  }
+</style>
+</head>
+<body data-depth="0">
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!-- ================= NAVBAR ================= -->
+<header class="navbar">
+  <div class="container" style="display:flex; align-items:center; justify-content:space-between; width:100%;">
+    <a href="index.html" class="navbar__logo">LUXE</a>
+
+    <nav class="navbar__links" aria-label="Primary">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="products.html">Shop</a>
+      <a href="products.html">Categories</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="navbar__actions">
+      <button class="icon-btn" data-search-open aria-label="Search">
+        <span class="material-symbols-outlined">search</span>
+      </button>
+      <button class="icon-btn" data-theme-toggle aria-label="Toggle dark mode">
+        <span class="material-symbols-outlined" data-theme-icon>dark_mode</span>
+      </button>
+      <a href="wishlist.html" class="icon-btn" aria-label="Wishlist">
+        <span class="material-symbols-outlined">favorite</span>
+        <span class="icon-btn__badge" data-wishlist-count style="display:none;">0</span>
+      </a>
+      <a href="cart.html" class="icon-btn" aria-label="Cart">
+        <span class="material-symbols-outlined">shopping_bag</span>
+        <span class="icon-btn__badge" data-cart-count style="display:none;">0</span>
+      </a>
+      <button class="icon-btn navbar__mobile-toggle" data-mobile-toggle aria-label="Open menu">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" data-mobile-menu>
+  <div class="mobile-menu__header">
+    <span class="navbar__logo">LUXE</span>
+    <button class="icon-btn" data-mobile-close aria-label="Close menu">
+      <span class="material-symbols-outlined">close</span>
+    </button>
+  </div>
+  <nav class="mobile-menu__links" aria-label="Mobile">
+    <a href="index.html">Home</a>
+    <a href="products.html">Shop</a>
+    <a href="products.html">Categories</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</div>
+
+<!-- Search overlay -->
+<div class="search-overlay" data-search-overlay>
+  <div class="search-overlay__panel">
+    <div style="display:flex; align-items:center; gap:var(--sp-3);">
+      <span class="material-symbols-outlined" style="color:var(--color-stone);">search</span>
+      <input type="text" class="search-overlay__input" data-search-input placeholder="Search products…" aria-label="Search products">
+      <button class="icon-btn" data-search-close aria-label="Close search">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <div class="search-overlay__results" data-search-results></div>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero" style="padding-top:0;">
+    <div class="hero__media">
+      <img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=1800&q=80" alt="A model wearing a tailored wool overcoat, standing against a muted studio backdrop">
+    </div>
+    <div class="container">
+      <div class="hero__content">
+        <span class="eyebrow">Autumn / Winter 2026</span>
+        <h1>Clothes built to be worn, not just owned.</h1>
+        <p>Twenty-four pieces, chosen for how they hold up — not how they photograph. Wool, leather, and silk, cut to last past this season.</p>
+        <div class="hero__actions">
+          <a href="products.html" class="btn btn--primary">Shop the collection</a>
+          <a href="about.html" class="btn btn--secondary">Our story</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CATEGORIES ================= -->
+  <section class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">Browse</span>
+        <h2>Shop by category</h2>
+      </div>
+    </div>
+    <div class="category-rail reveal" id="category-rail" aria-label="Product categories"></div>
+  </section>
+
+  <!-- ================= FEATURED ================= -->
+  <section class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">Selected</span>
+        <h2>Featured pieces</h2>
+      </div>
+      <a href="products.html" class="btn btn--ghost">View all →</a>
+    </div>
+    <div class="product-grid" id="featured-grid" aria-label="Featured products"></div>
+  </section>
+
+  <!-- ================= NEW ARRIVALS ================= -->
+  <section class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">Just in</span>
+        <h2>New arrivals</h2>
+      </div>
+      <a href="products.html?sort=newest" class="btn btn--ghost">View all →</a>
+    </div>
+    <div class="product-grid" id="new-grid" aria-label="New arrivals"></div>
+  </section>
+
+  <!-- ================= PROMO BANNER ================= -->
+  <section class="container">
+    <div class="promo-banner reveal">
+      <div>
+        <span class="eyebrow">Limited time</span>
+        <h2 style="margin-top:var(--sp-3);">20% off outerwear, while the season lasts.</h2>
+        <p>Coats and blazers cut from wool and cotton gabardine — built for the months ahead, discounted for a few weeks only.</p>
+        <a href="products.html" class="btn btn--primary">Shop outerwear</a>
+      </div>
+      <div class="promo-banner__media">
+        <img src="https://images.unsplash.com/photo-1544022613-e87ca75a784a?w=900&q=80" alt="A tailored wool overcoat hanging against a neutral backdrop" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= BEST SELLERS ================= -->
+  <section class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">Most worn</span>
+        <h2>Best sellers</h2>
+      </div>
+      <a href="products.html?sort=popularity" class="btn btn--ghost">View all →</a>
+    </div>
+    <div class="product-grid" id="bestseller-grid" aria-label="Best sellers"></div>
+  </section>
+
+  <!-- ================= TESTIMONIALS ================= -->
+  <section class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">Reviews</span>
+        <h2>What people are saying</h2>
+      </div>
+    </div>
+    <div class="testimonial-grid">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-card__stars">★★★★★</div>
+        <p>"The overcoat is the best piece of outerwear I own. Three winters in and it still looks new."</p>
+        <div class="testimonial-card__author">
+          <div class="testimonial-card__avatar"><img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=100&q=80" alt="" loading="lazy"></div>
+          <div>
+            <div class="testimonial-card__name">Adaeze O.</div>
+            <div class="testimonial-card__role">Lagos, Nigeria</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="testimonial-card__stars">★★★★★</div>
+        <p>"Ordering was simple and the sizing guide was spot on. The Chelsea boots fit perfectly out of the box."</p>
+        <div class="testimonial-card__author">
+          <div class="testimonial-card__avatar"><img src="https://images.unsplash.com/photo-1607346256330-dee7af15f7c5?w=100&q=80" alt="" loading="lazy"></div>
+          <div>
+            <div class="testimonial-card__name">Marcus T.</div>
+            <div class="testimonial-card__role">Austin, USA</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="testimonial-card__stars">★★★★★</div>
+        <p>"Quietly well made. Nothing shouts for attention but everything is cut properly. That's rare."</p>
+        <div class="testimonial-card__author">
+          <div class="testimonial-card__avatar"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&q=80" alt="" loading="lazy"></div>
+          <div>
+            <div class="testimonial-card__name">Hannah K.</div>
+            <div class="testimonial-card__role">Berlin, Germany</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= NEWSLETTER ================= -->
+  <section class="container">
+    <div class="newsletter reveal">
+      <span class="eyebrow" style="justify-content:center;">Stay in the loop</span>
+      <h2>New arrivals, sent occasionally — never weekly.</h2>
+      <form class="newsletter-form" id="newsletter-form" novalidate>
+        <label for="newsletter-email" class="visually-hidden">Email address</label>
+        <input type="email" id="newsletter-email" placeholder="you@email.com" required autocomplete="email">
+        <button type="submit" class="btn btn--primary">Subscribe</button>
+      </form>
+      <p class="newsletter-note">No spam. Unsubscribe anytime.</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand">LUXE</div>
+        <p class="footer__tagline">A considered wardrobe — wool, leather, and silk pieces built to outlast the season.</p>
+      </div>
+      <div>
+        <div class="footer__heading">Shop</div>
+        <nav class="footer__links">
+          <a href="products.html">All Products</a>
+          <a href="products.html">New Arrivals</a>
+          <a href="products.html">Best Sellers</a>
+          <a href="wishlist.html">Wishlist</a>
+        </nav>
+      </div>
+      <div>
+        <div class="footer__heading">Company</div>
+        <nav class="footer__links">
+          <a href="about.html">About Us</a>
+          <a href="contact.html">Contact</a>
+          <a href="contact.html">Shipping & Returns</a>
+        </nav>
+      </div>
+      <div>
+        <div class="footer__heading">Connect</div>
+        <nav class="footer__links">
+          <a href="#">Instagram</a>
+          <a href="#">Pinterest</a>
+          <a href="mailto:hello@luxe.example">hello@luxe.example</a>
+        </nav>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 LUXE. All rights reserved.</span>
+      <div class="footer__social">
+        <span class="eyebrow" style="border:none;">Crafted in vanilla JS</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" data-back-to-top aria-label="Back to top">
+  <span class="material-symbols-outlined">arrow_upward</span>
+</button>
+
+<script src="assets/js/app.js"></script>
+<script src="assets/js/products.js"></script>
+<script>
+  (async function initHome() {
+    const products = await LUXE.getProducts();
+
+    // Categories (unique, one representative image each)
+    const seen = new Map();
+    products.forEach((p) => { if (!seen.has(p.category)) seen.set(p.category, p); });
+    const catRail = document.getElementById('category-rail');
+    catRail.innerHTML = [...seen.entries()].map(([cat, p]) => `
+      <a class="category-tile" href="products.html?category=${encodeURIComponent(cat)}">
+        <img src="${p.images[0]}" alt="${cat}" loading="lazy">
+        <span class="category-tile__label">${cat}</span>
+      </a>
+    `).join('');
+
+    const featured = products.filter(p => p.isBestSeller).slice(0, 6);
+    const newest = [...products].sort((a,b) => new Date(b.dateAdded) - new Date(a.dateAdded)).slice(0, 3);
+    const bestsellers = products.filter(p => p.isBestSeller).slice(0, 3);
+
+    document.getElementById('featured-grid').innerHTML = featured.map(LUXEProducts.renderCard).join('');
+    document.getElementById('new-grid').innerHTML = newest.map(LUXEProducts.renderCard).join('');
+    document.getElementById('bestseller-grid').innerHTML = bestsellers.map(LUXEProducts.renderCard).join('');
+
+    LUXEProducts.bindCardEvents(document);
+    document.dispatchEvent(new CustomEvent('luxe:content-rendered'));
+  })();
+
+  document.getElementById('newsletter-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    LUXE.showToast('Subscribed — welcome to LUXE', 'mail');
+    e.target.reset();
+  });
+</script>
+</body>
+</html>
