@@ -1,2 +1,30 @@
-# luxe-ecommerce-store
-A premium, fully responsive frontend eCommerce website built with HTML, CSS, and vanilla JavaScript featuring dynamic products, shopping cart, wishlist, filtering, and modern UI/UX.
+# LUXE E-Commerce Store
+
+A premium frontend-only eCommerce website built using HTML, CSS, and vanilla JavaScript.
+
+## Features
+
+- Responsive design
+- Dynamic product catalog
+- Product search and filtering
+- Shopping cart
+- Wishlist
+- Local Storage
+- Dark mode
+- Product details page
+- Checkout UI
+- Smooth animations
+
+## Tech Stack
+
+- HTML5
+- CSS3
+- Vanilla JavaScript
+
+## Live Demo
+
+https://japhet996sunday-cell.github.io/luxe-ecommerce-store/
+
+## Developer
+
+Japhet Sunday 
