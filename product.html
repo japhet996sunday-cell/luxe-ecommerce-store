@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-page-title>Product — LUXE</title>
+<meta name="description" content="Product details at LUXE.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,300..500,0..1,0">
+
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  .breadcrumb {
+    display: flex; align-items: center; gap: var(--sp-2);
+    font-size: var(--fs-xs); color: var(--color-stone);
+    padding-block: var(--sp-5);
+  }
+  .breadcrumb a:hover { color: var(--color-ink); }
+  .breadcrumb .material-symbols-outlined { font-size: 14px; }
+
+  .pdp-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-8);
+    padding-bottom: var(--sp-9);
+  }
+
+  /* Gallery */
+  .pdp-gallery__main {
+    aspect-ratio: 3/4;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--color-border);
+    margin-bottom: var(--sp-3);
+  }
+  .pdp-gallery__main img { width: 100%; height: 100%; object-fit: cover; }
+  .pdp-gallery__thumbs { display: flex; gap: var(--sp-3); }
+  .pdp-gallery__thumb {
+    width: 84px; height: 108px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: 2px solid transparent;
+    cursor: pointer;
+    flex-shrink: 0;
+    opacity: 0.65;
+    transition: opacity var(--dur-fast), border-color var(--dur-fast);
+  }
+  .pdp-gallery__thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .pdp-gallery__thumb.is-active { border-color: var(--color-ink); opacity: 1; }
+  .pdp-gallery__thumb:hover { opacity: 1; }
+
+  /* Info panel */
+  .pdp-cat { font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-stone); margin-bottom: var(--sp-2); }
+  .pdp-title { font-size: var(--fs-3xl); margin-bottom: var(--sp-3); }
+  .pdp-rating { display: flex; align-items: center; gap: var(--sp-2); font-size: var(--fs-sm); color: var(--color-stone); margin-bottom: var(--sp-5); }
+  .pdp-rating .material-symbols-outlined { font-size: 16px; color: var(--color-brass-dark); font-variation-settings: 'FILL' 1; }
+  .pdp-prices { display: flex; align-items: baseline; gap: var(--sp-4); margin-bottom: var(--sp-6); }
+  .pdp-prices .price--lg { font-size: var(--fs-2xl); }
+  .pdp-desc { color: var(--color-stone); font-size: var(--fs-sm); margin-bottom: var(--sp-7); max-width: 52ch; }
+
+  .pdp-section-label { font-family: var(--font-mono); font-size: var(--fs-2xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-stone); margin-bottom: var(--sp-3); }
+
+  .pdp-colors { display: flex; gap: var(--sp-3); margin-bottom: var(--sp-6); }
+  .pdp-swatch {
+    width: 32px; height: 32px; border-radius: 50%;
+    border: 2px solid transparent;
+    outline: 1px solid var(--color-border-strong);
+    outline-offset: 2px;
+    cursor: pointer;
+  }
+  .pdp-swatch.is-selected { border-color: var(--color-brass-dark); }
+
+  .pdp-sizes { display: flex; gap: var(--sp-2); flex-wrap: wrap; margin-bottom: var(--sp-6); }
+  .pdp-size {
+    min-width: 48px;
+    padding: var(--sp-3) var(--sp-4);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--color-ink);
+    font-size: var(--fs-sm);
+    cursor: pointer;
+    transition: all var(--dur-fast) var(--ease-out);
+  }
+  .pdp-size.is-selected { background: var(--color-ink); color: var(--color-canvas); border-color: var(--color-ink); }
+
+  .pdp-qty {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-full);
+    margin-bottom: var(--sp-6);
+  }
+  .pdp-qty button {
+    width: 40px; height: 40px;
+    background: none; border: none;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--color-ink);
+  }
+  .pdp-qty button:hover { color: var(--color-brass-dark); }
+  .pdp-qty span { width: 32px; text-align: center; font-family: var(--font-mono); font-size: var(--fs-sm); }
+
+  .pdp-actions { display: flex; gap: var(--sp-3); margin-bottom: var(--sp-7); }
+  .pdp-actions .btn--primary { flex: 1; }
+
+  .pdp-meta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+    padding-top: var(--sp-6);
+    border-top: 1px solid var(--color-border);
+    font-size: var(--fs-sm);
+    color: var(--color-stone);
+  }
+  .pdp-meta-item { display: flex; align-items: center; gap: var(--sp-3); }
+  .pdp-meta-item .material-symbols-outlined { font-size: 20px; color: var(--color-brass-dark); }
+
+  .related-section { border-top: 1px solid var(--color-border); }
+
+  @media (max-width: 860px) {
+    .pdp-layout { grid-template-columns: 1fr; gap: var(--sp-6); }
+    .pdp-title { font-size: var(--fs-2xl); }
+  }
+</style>
+</head>
+<body data-depth="0">
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header class="navbar">
+  <div class="container" style="display:flex; align-items:center; justify-content:space-between; width:100%;">
+    <a href="index.html" class="navbar__logo">LUXE</a>
+    <nav class="navbar__links" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="products.html" aria-current="page">Shop</a>
+      <a href="products.html">Categories</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="navbar__actions">
+      <button class="icon-btn" data-search-open aria-label="Search">
+        <span class="material-symbols-outlined">search</span>
+      </button>
+      <button class="icon-btn" data-theme-toggle aria-label="Toggle dark mode">
+        <span class="material-symbols-outlined" data-theme-icon>dark_mode</span>
+      </button>
+      <a href="wishlist.html" class="icon-btn" aria-label="Wishlist">
+        <span class="material-symbols-outlined">favorite</span>
+        <span class="icon-btn__badge" data-wishlist-count style="display:none;">0</span>
+      </a>
+      <a href="cart.html" class="icon-btn" aria-label="Cart">
+        <span class="material-symbols-outlined">shopping_bag</span>
+        <span class="icon-btn__badge" data-cart-count style="display:none;">0</span>
+      </a>
+      <button class="icon-btn navbar__mobile-toggle" data-mobile-toggle aria-label="Open menu">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" data-mobile-menu>
+  <div class="mobile-menu__header">
+    <span class="navbar__logo">LUXE</span>
+    <button class="icon-btn" data-mobile-close aria-label="Close menu">
+      <span class="material-symbols-outlined">close</span>
+    </button>
+  </div>
+  <nav class="mobile-menu__links" aria-label="Mobile">
+    <a href="index.html">Home</a>
+    <a href="products.html">Shop</a>
+    <a href="products.html">Categories</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</div>
+
+<div class="search-overlay" data-search-overlay>
+  <div class="search-overlay__panel">
+    <div style="display:flex; align-items:center; gap:var(--sp-3);">
+      <span class="material-symbols-outlined" style="color:var(--color-stone);">search</span>
+      <input type="text" class="search-overlay__input" data-search-input placeholder="Search products…" aria-label="Search products">
+      <button class="icon-btn" data-search-close aria-label="Close search">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <div class="search-overlay__results" data-search-results></div>
+  </div>
+</div>
+
+<main id="main">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="material-symbols-outlined">chevron_right</span>
+      <a href="products.html">Shop</a>
+      <span class="material-symbols-outlined">chevron_right</span>
+      <span data-breadcrumb-current>Product</span>
+    </nav>
+  </div>
+
+  <div class="container pdp-layout" id="pdp-content">
+    <!-- Populated by JS -->
+  </div>
+
+  <section class="related-section container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">You may also like</span>
+        <h2>Related pieces</h2>
+      </div>
+    </div>
+    <div class="product-grid" id="related-grid"></div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand">LUXE</div>
+        <p class="footer__tagline">A considered wardrobe — wool, leather, and silk pieces built to outlast the season.</p>
+      </div>
+      <div>
+        <div class="footer__heading">Shop</div>
+        <nav class="footer__links">
+          <a href="products.html">All Products</a>
+          <a href="products.html">New Arrivals</a>
+          <a href="products.html">Best Sellers</a>
+          <a href="wishlist.html">Wishlist</a>
+        </nav>
+      </div>
+      <div>
+        <div class="footer__heading">Company</div>
+        <nav class="footer__links">
+          <a href="about.html">About Us</a>
+          <a href="contact.html">Contact</a>
+          <a href="contact.html">Shipping & Returns</a>
+        </nav>
+      </div>
+      <div>
+        <div class="footer__heading">Connect</div>
+        <nav class="footer__links">
+          <a href="#">Instagram</a>
+          <a href="#">Pinterest</a>
+          <a href="mailto:hello@luxe.example">hello@luxe.example</a>
+        </nav>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 LUXE. All rights reserved.</span>
+      <div class="footer__social">
+        <span class="eyebrow" style="border:none;">Crafted in vanilla JS</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" data-back-to-top aria-label="Back to top">
+  <span class="material-symbols-outlined">arrow_upward</span>
+</button>
+
+<script src="assets/js/app.js"></script>
+<script src="assets/js/products.js"></script>
+<script>
+(async function initPDP() {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id');
+  const products = await LUXE.getProducts();
+  const product = products.find(p => p.id === id) || products[0];
+
+  document.title = `${product.name} — LUXE`;
+  document.querySelector('[data-breadcrumb-current]').textContent = product.name;
+
+  let selectedImage = 0;
+  let selectedColor = product.colors[0];
+  let selectedSize = product.sizes[0];
+  let qty = 1;
+
+  const content = document.getElementById('pdp-content');
+  content.innerHTML = `
+    <div class="pdp-gallery">
+      <div class="pdp-gallery__main">
+        <img src="${product.images[0]}" alt="${product.name}" data-gallery-main>
+      </div>
+      <div class="pdp-gallery__thumbs" data-gallery-thumbs>
+        ${product.images.map((img, i) => `
+          <button class="pdp-gallery__thumb ${i === 0 ? 'is-active' : ''}" data-thumb-index="${i}" aria-label="View image ${i + 1}">
+            <img src="${img}" alt="" loading="lazy">
+          </button>
+        `).join('')}
+      </div>
+    </div>
+
+    <div class="pdp-info">
+      <div class="pdp-cat">${product.category}</div>
+      <h1 class="pdp-title">${product.name}</h1>
+      <div class="pdp-rating" aria-label="Rated ${product.rating} out of 5">
+        ${LUXEProducts.starsMarkup(product.rating)}
+        <span>${product.rating} · ${product.reviews} reviews</span>
+      </div>
+      <div class="pdp-prices">
+        <span class="price price--lg">$${LUXE.formatPrice(product.price)}</span>
+        ${product.discount > 0 ? `<span class="price price--strike">$${LUXE.formatPrice(product.originalPrice)}</span><span class="product-card__badge product-card__badge--brass" style="position:static;">-${product.discount}%</span>` : ''}
+      </div>
+      <p class="pdp-desc">${product.description}</p>
+
+      <div class="pdp-section-label">Color</div>
+      <div class="pdp-colors" data-pdp-colors>
+        ${product.colors.map((c, i) => `<button class="pdp-swatch ${i === 0 ? 'is-selected' : ''}" style="background:${c};" data-color="${c}" aria-label="Color ${i + 1}"></button>`).join('')}
+      </div>
+
+      <div class="pdp-section-label">Size</div>
+      <div class="pdp-sizes" data-pdp-sizes>
+        ${product.sizes.map((s, i) => `<button class="pdp-size ${i === 0 ? 'is-selected' : ''}" data-size="${s}">${s}</button>`).join('')}
+      </div>
+
+      <div class="pdp-section-label">Quantity</div>
+      <div class="pdp-qty">
+        <button data-qty-minus aria-label="Decrease quantity">
+          <span class="material-symbols-outlined" style="font-size:18px;">remove</span>
+        </button>
+        <span data-qty-value>1</span>
+        <button data-qty-plus aria-label="Increase quantity">
+          <span class="material-symbols-outlined" style="font-size:18px;">add</span>
+        </button>
+      </div>
+
+      <div class="pdp-actions">
+        <button class="btn btn--primary" data-pdp-add-cart>
+          <span class="material-symbols-outlined" style="font-size:18px;">add_shopping_cart</span>
+          Add to cart
+        </button>
+        <button class="icon-btn" style="border:1px solid var(--color-border-strong); width:52px; height:52px;" data-pdp-wishlist aria-label="Add to wishlist" aria-pressed="${LUXE.isWishlisted(product.id)}">
+          <span class="material-symbols-outlined" style="${LUXE.isWishlisted(product.id) ? "font-variation-settings:'FILL' 1; color:var(--color-brass-dark);" : ''}">favorite</span>
+        </button>
+      </div>
+
+      <div class="pdp-meta">
+        <div class="pdp-meta-item"><span class="material-symbols-outlined">local_shipping</span> Free shipping on orders over $150</div>
+        <div class="pdp-meta-item"><span class="material-symbols-outlined">autorenew</span> Free 30-day returns</div>
+        <div class="pdp-meta-item"><span class="material-symbols-outlined">verified</span> Made with responsibly sourced materials</div>
+      </div>
+    </div>
+  `;
+
+  // Gallery
+  content.querySelectorAll('[data-thumb-index]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      selectedImage = Number(btn.dataset.thumbIndex);
+      content.querySelector('[data-gallery-main]').src = product.images[selectedImage];
+      content.querySelectorAll('[data-thumb-index]').forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+    });
+  });
+
+  // Color
+  content.querySelectorAll('[data-color]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      selectedColor = btn.dataset.color;
+      content.querySelectorAll('[data-color]').forEach(b => b.classList.remove('is-selected'));
+      btn.classList.add('is-selected');
+    });
+  });
+
+  // Size
+  content.querySelectorAll('[data-size]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      selectedSize = btn.dataset.size;
+      content.querySelectorAll('[data-size]').forEach(b => b.classList.remove('is-selected'));
+      btn.classList.add('is-selected');
+    });
+  });
+
+  // Quantity
+  const qtyLabel = content.querySelector('[data-qty-value]');
+  content.querySelector('[data-qty-minus]').addEventListener('click', () => {
+    qty = Math.max(1, qty - 1);
+    qtyLabel.textContent = qty;
+  });
+  content.querySelector('[data-qty-plus]').addEventListener('click', () => {
+    qty = Math.min(10, qty + 1);
+    qtyLabel.textContent = qty;
+  });
+
+  // Add to cart
+  content.querySelector('[data-pdp-add-cart]').addEventListener('click', () => {
+    LUXE.addToCart(product, { size: selectedSize, color: selectedColor, qty });
+  });
+
+  // Wishlist
+  const wishBtn = content.querySelector('[data-pdp-wishlist]');
+  wishBtn.addEventListener('click', () => {
+    const active = LUXE.toggleWishlist(product);
+    const icon = wishBtn.querySelector('.material-symbols-outlined');
+    wishBtn.setAttribute('aria-pressed', String(active));
+    icon.style.cssText = active ? "font-variation-settings:'FILL' 1; color:var(--color-brass-dark);" : '';
+  });
+
+  // Related products (same category, excluding self)
+  const related = products.filter(p => p.category === product.category && p.id !== product.id).slice(0, 3);
+  const relatedGrid = document.getElementById('related-grid');
+  relatedGrid.innerHTML = related.length
+    ? related.map(LUXEProducts.renderCard).join('')
+    : products.filter(p => p.id !== product.id).slice(0, 3).map(LUXEProducts.renderCard).join('');
+  LUXEProducts.bindCardEvents(relatedGrid);
+
+  document.dispatchEvent(new CustomEvent('luxe:content-rendered'));
+})();
+</script>
+</body>
+</html>
