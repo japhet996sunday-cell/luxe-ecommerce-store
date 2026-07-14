@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — LUXE</title>
+<meta name="description" content="LUXE is a considered wardrobe brand. Learn about our story, mission, and values.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,300..500,0..1,0">
+
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  .about-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-8);
+    align-items: center;
+    padding-block: var(--sp-8) var(--sp-9);
+  }
+  .about-hero__media { aspect-ratio: 4/5; border-radius: var(--radius-lg); overflow: hidden; }
+  .about-hero__media img { width: 100%; height: 100%; object-fit: cover; }
+  .about-hero h1 { margin-block: var(--sp-3) var(--sp-5); }
+  .about-hero p { font-size: var(--fs-md); max-width: 48ch; }
+
+  .mission-section {
+    background: var(--color-canvas-raised);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .mission-section .container { max-width: 780px; text-align: center; }
+  .mission-section h2 { font-size: var(--fs-2xl); margin-block: var(--sp-3) 0; }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--sp-6);
+    text-align: center;
+  }
+  .stat-card__num {
+    font-family: var(--font-mono);
+    font-size: var(--fs-2xl);
+    color: var(--color-brass-dark);
+    display: block;
+    margin-bottom: var(--sp-2);
+  }
+  .stat-card__label { font-size: var(--fs-sm); color: var(--color-stone); }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--sp-5);
+  }
+  .value-card {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--sp-6);
+  }
+  .value-card .material-symbols-outlined {
+    font-size: 32px; color: var(--color-brass-dark); margin-bottom: var(--sp-4);
+  }
+  .value-card h3 { margin-bottom: var(--sp-3); }
+  .value-card p { font-size: var(--fs-sm); }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--sp-5);
+  }
+  .team-card__media { aspect-ratio: 4/5; border-radius: var(--radius-md); overflow: hidden; margin-bottom: var(--sp-4); }
+  .team-card__media img { width: 100%; height: 100%; object-fit: cover; }
+  .team-card__name { font-family: var(--font-display); font-size: var(--fs-md); margin-bottom: var(--sp-1); }
+  .team-card__role { font-size: var(--fs-xs); color: var(--color-stone); font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.06em; }
+
+  @media (max-width: 900px) {
+    .about-hero { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: var(--sp-7); }
+    .values-grid { grid-template-columns: 1fr; }
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body data-depth="0">
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header class="navbar">
+  <div class="container" style="display:flex; align-items:center; justify-content:space-between; width:100%;">
+    <a href="index.html" class="navbar__logo">LUXE</a>
+    <nav class="navbar__links" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="products.html">Shop</a>
+      <a href="products.html">Categories</a>
+      <a href="about.html" aria-current="page">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="navbar__actions">
+      <button class="icon-btn" data-search-open aria-label="Search">
+        <span class="material-symbols-outlined">search</span>
+      </button>
+      <button class="icon-btn" data-theme-toggle aria-label="Toggle dark mode">
+        <span class="material-symbols-outlined" data-theme-icon>dark_mode</span>
+      </button>
+      <a href="wishlist.html" class="icon-btn" aria-label="Wishlist">
+        <span class="material-symbols-outlined">favorite</span>
+        <span class="icon-btn__badge" data-wishlist-count style="display:none;">0</span>
+      </a>
+      <a href="cart.html" class="icon-btn" aria-label="Cart">
+        <span class="material-symbols-outlined">shopping_bag</span>
+        <span class="icon-btn__badge" data-cart-count style="display:none;">0</span>
+      </a>
+      <button class="icon-btn navbar__mobile-toggle" data-mobile-toggle aria-label="Open menu">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" data-mobile-menu>
+  <div class="mobile-menu__header">
+    <span class="navbar__logo">LUXE</span>
+    <button class="icon-btn" data-mobile-close aria-label="Close menu">
+      <span class="material-symbols-outlined">close</span>
+    </button>
+  </div>
+  <nav class="mobile-menu__links" aria-label="Mobile">
+    <a href="index.html">Home</a>
+    <a href="products.html">Shop</a>
+    <a href="products.html">Categories</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</div>
+
+<div class="search-overlay" data-search-overlay>
+  <div class="search-overlay__panel">
+    <div style="display:flex; align-items:center; gap:var(--sp-3);">
+      <span class="material-symbols-outlined" style="color:var(--color-stone);">search</span>
+      <input type="text" class="search-overlay__input" data-search-input placeholder="Search products…" aria-label="Search products">
+      <button class="icon-btn" data-search-close aria-label="Close search">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <div class="search-overlay__results" data-search-results></div>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- ================= HERO / STORY ================= -->
+  <section class="container about-hero">
+    <div>
+      <span class="eyebrow">Our story</span>
+      <h1>Started with one coat that wouldn't wear out.</h1>
+      <p>LUXE began in 2019 with a single wool overcoat, made because nothing on the market held up past a season. That coat is still worn today. Every piece since has been held to the same standard: built to be worn hundreds of times, not photographed once.</p>
+      <p style="margin-top:var(--sp-4);">We work with a small number of mills and tanneries in Italy, Portugal, and Turkey — no seasonal drops, no seventy-item collections. Fewer pieces, made properly.</p>
+    </div>
+    <div class="about-hero__media reveal">
+      <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=900&q=80" alt="A tailoring workshop with fabric rolls and a sewing table" loading="lazy">
+    </div>
+  </section>
+
+  <!-- ================= MISSION ================= -->
+  <section class="mission-section">
+    <div class="container">
+      <span class="eyebrow" style="justify-content:center;">Mission</span>
+      <h2>Clothes should outlast the trend that sold them to you.</h2>
+      <p style="margin-top:var(--sp-4);">We measure success in how long a piece stays in rotation, not how fast it sells out. That means fewer releases, higher material cost, and a size run that fits real bodies rather than a sample rack.</p>
+    </div>
+  </section>
+
+  <!-- ================= STATS ================= -->
+  <section class="container">
+    <div class="stats-grid">
+      <div class="stat-card reveal">
+        <span class="stat-card__num">2019</span>
+        <span class="stat-card__label">Founded</span>
+      </div>
+      <div class="stat-card reveal">
+        <span class="stat-card__num">24</span>
+        <span class="stat-card__label">Products in current collection</span>
+      </div>
+      <div class="stat-card reveal">
+        <span class="stat-card__num">12</span>
+        <span class="stat-card__label">Partner mills & workshops</span>
+      </div>
+      <div class="stat-card reveal">
+        <span class="stat-card__num">4.7</span>
+        <span class="stat-card__label">Average customer rating</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= VALUES ================= -->
+  <section class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">What we hold to</span>
+        <h2>Brand values</h2>
+      </div>
+    </div>
+    <div class="values-grid">
+      <div class="value-card reveal">
+        <span class="material-symbols-outlined">verified</span>
+        <h3>Material honesty</h3>
+        <p>Every fabric and leather is named and sourced on the product page — no vague "premium blend" labeling.</p>
+      </div>
+      <div class="value-card reveal">
+        <span class="material-symbols-outlined">handyman</span>
+        <h3>Built to repair</h3>
+        <p>Pieces are constructed so a tailor can mend them, not just replace them. We publish care and repair guides for everything we sell.</p>
+      </div>
+      <div class="value-card reveal">
+        <span class="material-symbols-outlined">balance</span>
+        <h3>Fewer, better</h3>
+        <p>We release in small batches instead of chasing seasonal cycles. When something sells out, it's gone until the next production run.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TEAM ================= -->
+  <section class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">The people behind it</span>
+        <h2>Team</h2>
+      </div>
+    </div>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <div class="team-card__media"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&q=80" alt="" loading="lazy"></div>
+        <div class="team-card__name">Naomi Reyes</div>
+        <div class="team-card__role">Founder & Creative Director</div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-card__media"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=500&q=80" alt="" loading="lazy"></div>
+        <div class="team-card__name">Kwame Asante</div>
+        <div class="team-card__role">Head of Production</div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-card__media"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500&q=80" alt="" loading="lazy"></div>
+        <div class="team-card__name">Elena Marchetti</div>
+        <div class="team-card__role">Materials Sourcing</div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-card__media"><img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&q=80" alt="" loading="lazy"></div>
+        <div class="team-card__name">Marcus Webb</div>
+        <div class="team-card__role">Customer Experience</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand">LUXE</div>
+        <p class="footer__tagline">A considered wardrobe — wool, leather, and silk pieces built to outlast the season.</p>
+      </div>
+      <div>
+        <div class="footer__heading">Shop</div>
+        <nav class="footer__links">
+          <a href="products.html">All Products</a>
+          <a href="products.html">New Arrivals</a>
+          <a href="products.html">Best Sellers</a>
+          <a href="wishlist.html">Wishlist</a>
+        </nav>
+      </div>
+      <div>
+        <div class="footer__heading">Company</div>
+        <nav class="footer__links">
+          <a href="about.html">About Us</a>
+          <a href="contact.html">Contact</a>
+          <a href="contact.html">Shipping & Returns</a>
+        </nav>
+      </div>
+      <div>
+        <div class="footer__heading">Connect</div>
+        <nav class="footer__links">
+          <a href="#">Instagram</a>
+          <a href="#">Pinterest</a>
+          <a href="mailto:hello@luxe.example">hello@luxe.example</a>
+        </nav>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 LUXE. All rights reserved.</span>
+      <div class="footer__social">
+        <span class="eyebrow" style="border:none;">Crafted in vanilla JS</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" data-back-to-top aria-label="Back to top">
+  <span class="material-symbols-outlined">arrow_upward</span>
+</button>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>
