@@ -1,0 +1,483 @@
+[
+  {
+    "id": "lx-001",
+    "name": "Wool Overcoat",
+    "category": "Outerwear",
+    "price": 428,
+    "originalPrice": 535,
+    "discount": 20,
+    "rating": 4.8,
+    "reviews": 142,
+    "colors": ["#141412", "#6B6862", "#C9A876"],
+    "sizes": ["XS", "S", "M", "L", "XL"],
+    "isNew": true,
+    "isBestSeller": true,
+    "dateAdded": "2026-06-20",
+    "images": [
+      "https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=900&q=80",
+      "https://images.unsplash.com/photo-1544022613-e87ca75a784a?w=900&q=80",
+      "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=900&q=80"
+    ],
+    "description": "Cut from double-faced Italian wool, this overcoat holds its shape through the season. A single-breasted silhouette with horn buttons and a hand-finished collar."
+  },
+  {
+    "id": "lx-002",
+    "name": "Silk Slip Dress",
+    "category": "Dresses",
+    "price": 268,
+    "originalPrice": 268,
+    "discount": 0,
+    "rating": 4.6,
+    "reviews": 89,
+    "colors": ["#141412", "#C9A876"],
+    "sizes": ["XS", "S", "M", "L"],
+    "isNew": true,
+    "isBestSeller": false,
+    "dateAdded": "2026-07-01",
+    "images": [
+      "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=900&q=80",
+      "https://images.unsplash.com/photo-1583496661160-fb5886a13d16?w=900&q=80"
+    ],
+    "description": "Bias-cut pure silk that moves with the body. A quiet, adjustable spaghetti strap and a hem that falls just below the knee."
+  },
+  {
+    "id": "lx-003",
+    "name": "Leather Chelsea Boot",
+    "category": "Footwear",
+    "price": 312,
+    "originalPrice": 390,
+    "discount": 20,
+    "rating": 4.9,
+    "reviews": 203,
+    "colors": ["#141412", "#6B6862"],
+    "sizes": ["39", "40", "41", "42", "43", "44"],
+    "isNew": false,
+    "isBestSeller": true,
+    "dateAdded": "2026-04-14",
+    "images": [
+      "https://images.unsplash.com/photo-1638247025967-b4e6b301f7bd?w=900&q=80",
+      "https://images.unsplash.com/photo-1520639888713-7851133b1ed0?w=900&q=80"
+    ],
+    "description": "Vegetable-tanned leather, elastic side panels, a stacked leather heel. Built on a last that breaks in without breaking down."
+  },
+  {
+    "id": "lx-004",
+    "name": "Cashmere Crewneck",
+    "category": "Knitwear",
+    "price": 195,
+    "originalPrice": 195,
+    "discount": 0,
+    "rating": 4.7,
+    "reviews": 167,
+    "colors": ["#FAFAF9", "#6B6862", "#141412", "#C9A876"],
+    "sizes": ["XS", "S", "M", "L", "XL"],
+    "isNew": false,
+    "isBestSeller": true,
+    "dateAdded": "2026-03-02",
+    "images": [
+      "https://images.unsplash.com/photo-1576871337622-98d48d1cf531?w=900&q=80",
+      "https://images.unsplash.com/photo-1610652492500-ded49ceeb378?w=900&q=80"
+    ],
+    "description": "Two-ply Mongolian cashmere, fully fashioned for a clean seam line. Sits close without clinging."
+  },
+  {
+    "id": "lx-005",
+    "name": "Tailored Wide-Leg Trouser",
+    "category": "Bottoms",
+    "price": 178,
+    "originalPrice": 178,
+    "discount": 0,
+    "rating": 4.5,
+    "reviews": 74,
+    "colors": ["#141412", "#6B6862"],
+    "sizes": ["24", "26", "28", "30", "32"],
+    "isNew": true,
+    "isBestSeller": false,
+    "dateAdded": "2026-06-28",
+    "images": [
+      "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=900&q=80",
+      "https://images.unsplash.com/photo-1551232864-3f0890e580d9?w=900&q=80"
+    ],
+    "description": "A high-rise trouser with a fluid drape through the leg. Fully lined, finished with a hidden hook closure."
+  },
+  {
+    "id": "lx-006",
+    "name": "Structured Tote",
+    "category": "Bags",
+    "price": 345,
+    "originalPrice": 430,
+    "discount": 20,
+    "rating": 4.8,
+    "reviews": 118,
+    "colors": ["#141412", "#C9A876"],
+    "sizes": ["One Size"],
+    "isNew": false,
+    "isBestSeller": true,
+    "dateAdded": "2026-02-18",
+    "images": [
+      "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=900&q=80",
+      "https://images.unsplash.com/photo-1591561954557-26941169b49e?w=900&q=80"
+    ],
+    "description": "Full-grain leather with a reinforced base and interior zip pocket. Holds a 15-inch laptop with room to spare."
+  },
+  {
+    "id": "lx-007",
+    "name": "Oxford Cotton Shirt",
+    "category": "Shirts",
+    "price": 98,
+    "originalPrice": 98,
+    "discount": 0,
+    "rating": 4.4,
+    "reviews": 56,
+    "colors": ["#FAFAF9", "#6B6862"],
+    "sizes": ["XS", "S", "M", "L", "XL"],
+    "isNew": false,
+    "isBestSeller": false,
+    "dateAdded": "2026-01-22",
+    "images": [
+      "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=900&q=80",
+      "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=900&q=80"
+    ],
+    "description": "Long-staple cotton oxford with a relaxed collar roll. Mother-of-pearl buttons, single-needle stitching throughout."
+  },
+  {
+    "id": "lx-008",
+    "name": "Pleated Midi Skirt",
+    "category": "Bottoms",
+    "price": 156,
+    "originalPrice": 195,
+    "discount": 20,
+    "rating": 4.6,
+    "reviews": 61,
+    "colors": ["#141412", "#C9A876"],
+    "sizes": ["XS", "S", "M", "L"],
+    "isNew": true,
+    "isBestSeller": false,
+    "dateAdded": "2026-07-05",
+    "images": [
+      "https://images.unsplash.com/photo-1583496661160-fb5886a13d16?w=900&q=80",
+      "https://images.unsplash.com/photo-1554568218-0f1715e72254?w=900&q=80"
+    ],
+    "description": "Knife-pleated satin-back crepe that catches light with movement. Elasticated waistband hidden beneath a clean front panel."
+  },
+  {
+    "id": "lx-009",
+    "name": "Minimalist Sneaker",
+    "category": "Footwear",
+    "price": 165,
+    "originalPrice": 165,
+    "discount": 0,
+    "rating": 4.7,
+    "reviews": 231,
+    "colors": ["#FAFAF9", "#141412"],
+    "sizes": ["38", "39", "40", "41", "42", "43", "44"],
+    "isNew": false,
+    "isBestSeller": true,
+    "dateAdded": "2026-02-09",
+    "images": [
+      "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=900&q=80",
+      "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=900&q=80"
+    ],
+    "description": "Full-grain leather upper on a cupsole built for daily wear. No branding, no noise, just a clean silhouette."
+  },
+  {
+    "id": "lx-010",
+    "name": "Linen Blazer",
+    "category": "Outerwear",
+    "price": 285,
+    "originalPrice": 285,
+    "discount": 0,
+    "rating": 4.5,
+    "reviews": 47,
+    "colors": ["#6B6862", "#FAFAF9"],
+    "sizes": ["XS", "S", "M", "L", "XL"],
+    "isNew": true,
+    "isBestSeller": false,
+    "dateAdded": "2026-06-15",
+    "images": [
+      "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=900&q=80",
+      "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=900&q=80"
+    ],
+    "description": "Unstructured linen with a half-canvas construction. Breathable enough for summer, sharp enough for the office."
+  },
+  {
+    "id": "lx-011",
+    "name": "Ribbed Tank Top",
+    "category": "Shirts",
+    "price": 48,
+    "originalPrice": 60,
+    "discount": 20,
+    "rating": 4.3,
+    "reviews": 92,
+    "colors": ["#141412", "#FAFAF9", "#6B6862"],
+    "sizes": ["XS", "S", "M", "L"],
+    "isNew": false,
+    "isBestSeller": false,
+    "dateAdded": "2026-01-10",
+    "images": [
+      "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=900&q=80",
+      "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=900&q=80"
+    ],
+    "description": "Fine-rib cotton-modal blend that holds its shape wash after wash. A staple layer for any season."
+  },
+  {
+    "id": "lx-012",
+    "name": "Leather Crossbody",
+    "category": "Bags",
+    "price": 218,
+    "originalPrice": 218,
+    "discount": 0,
+    "rating": 4.6,
+    "reviews": 73,
+    "colors": ["#141412", "#6B6862", "#C9A876"],
+    "sizes": ["One Size"],
+    "isNew": false,
+    "isBestSeller": false,
+    "dateAdded": "2026-03-19",
+    "images": [
+      "https://images.unsplash.com/photo-1591561954557-26941169b49e?w=900&q=80",
+      "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=900&q=80"
+    ],
+    "description": "Compact, adjustable strap, magnetic closure. Sized for the essentials and nothing more."
+  },
+  {
+    "id": "lx-013",
+    "name": "Merino Turtleneck",
+    "category": "Knitwear",
+    "price": 142,
+    "originalPrice": 178,
+    "discount": 20,
+    "rating": 4.7,
+    "reviews": 105,
+    "colors": ["#141412", "#6B6862", "#FAFAF9"],
+    "sizes": ["XS", "S", "M", "L", "XL"],
+    "isNew": false,
+    "isBestSeller": true,
+    "dateAdded": "2026-02-25",
+    "images": [
+      "https://images.unsplash.com/photo-1610652492500-ded49ceeb378?w=900&q=80",
+      "https://images.unsplash.com/photo-1576871337622-98d48d1cf531?w=900&q=80"
+    ],
+    "description": "Extra-fine merino, fully fashioned collar. Warm without bulk, layers cleanly under a coat."
+  },
+  {
+    "id": "lx-014",
+    "name": "Straight-Leg Denim",
+    "category": "Bottoms",
+    "price": 128,
+    "originalPrice": 128,
+    "discount": 0,
+    "rating": 4.5,
+    "reviews": 188,
+    "colors": ["#141412", "#6B6862"],
+    "sizes": ["24", "26", "28", "30", "32", "34"],
+    "isNew": false,
+    "isBestSeller": true,
+    "dateAdded": "2026-01-30",
+    "images": [
+      "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=900&q=80",
+      "https://images.unsplash.com/photo-1542272604-787c3835535d?w=900&q=80"
+    ],
+    "description": "Rigid selvedge denim that softens with wear. A mid-rise, straight-leg cut with a clean unwashed finish."
+  },
+  {
+    "id": "lx-015",
+    "name": "Trench Coat",
+    "category": "Outerwear",
+    "price": 398,
+    "originalPrice": 398,
+    "discount": 0,
+    "rating": 4.9,
+    "reviews": 156,
+    "colors": ["#C9A876", "#141412"],
+    "sizes": ["XS", "S", "M", "L", "XL"],
+    "isNew": true,
+    "isBestSeller": true,
+    "dateAdded": "2026-06-30",
+    "images": [
+      "https://images.unsplash.com/photo-1544022613-e87ca75a784a?w=900&q=80",
+      "https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=900&q=80"
+    ],
+    "description": "Water-resistant cotton gabardine with a storm flap and belted waist. The kind of coat that outlasts the trend cycle."
+  },
+  {
+    "id": "lx-016",
+    "name": "Suede Loafer",
+    "category": "Footwear",
+    "price": 245,
+    "originalPrice": 306,
+    "discount": 20,
+    "rating": 4.6,
+    "reviews": 84,
+    "colors": ["#6B6862", "#141412"],
+    "sizes": ["39", "40", "41", "42", "43"],
+    "isNew": false,
+    "isBestSeller": false,
+    "dateAdded": "2026-03-08",
+    "images": [
+      "https://images.unsplash.com/photo-1614252369475-531eba835eb1?w=900&q=80",
+      "https://images.unsplash.com/photo-1533867617858-e7b97e060509?w=900&q=80"
+    ],
+    "description": "Unlined suede with a hand-stitched apron toe. Flexible enough to wear without socks, sturdy enough not to."
+  },
+  {
+    "id": "lx-017",
+    "name": "Wrap Midi Dress",
+    "category": "Dresses",
+    "price": 214,
+    "originalPrice": 214,
+    "discount": 0,
+    "rating": 4.4,
+    "reviews": 39,
+    "colors": ["#C9A876", "#141412"],
+    "sizes": ["XS", "S", "M", "L"],
+    "isNew": true,
+    "isBestSeller": false,
+    "dateAdded": "2026-07-08",
+    "images": [
+      "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=900&q=80",
+      "https://images.unsplash.com/photo-1595777216528-071e0127ccbf?w=900&q=80"
+    ],
+    "description": "A self-tie wrap silhouette in a fluid crepe. Cut to skim rather than cling, with a flattering V neckline."
+  },
+  {
+    "id": "lx-018",
+    "name": "Canvas Weekender",
+    "category": "Bags",
+    "price": 175,
+    "originalPrice": 175,
+    "discount": 0,
+    "rating": 4.5,
+    "reviews": 58,
+    "colors": ["#6B6862", "#141412"],
+    "sizes": ["One Size"],
+    "isNew": false,
+    "isBestSeller": false,
+    "dateAdded": "2026-02-14",
+    "images": [
+      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=900&q=80",
+      "https://images.unsplash.com/photo-1547949003-9792a18a2645?w=900&q=80"
+    ],
+    "description": "Heavyweight waxed canvas with leather trim and a detachable strap. Built for the overhead bin, not the hold."
+  },
+  {
+    "id": "lx-019",
+    "name": "Cable Knit Sweater",
+    "category": "Knitwear",
+    "price": 168,
+    "originalPrice": 210,
+    "discount": 20,
+    "rating": 4.6,
+    "reviews": 97,
+    "colors": ["#FAFAF9", "#6B6862"],
+    "sizes": ["XS", "S", "M", "L", "XL"],
+    "isNew": false,
+    "isBestSeller": true,
+    "dateAdded": "2026-03-22",
+    "images": [
+      "https://images.unsplash.com/photo-1576871337622-98d48d1cf531?w=900&q=80",
+      "https://images.unsplash.com/photo-1608063615781-e2ef8c73d114?w=900&q=80"
+    ],
+    "description": "Hand-loomed aran cable knit in a heavyweight wool blend. Made for the coldest months without needing a coat over it."
+  },
+  {
+    "id": "lx-020",
+    "name": "Tailored Blazer",
+    "category": "Outerwear",
+    "price": 312,
+    "originalPrice": 312,
+    "discount": 0,
+    "rating": 4.7,
+    "reviews": 68,
+    "colors": ["#141412", "#6B6862"],
+    "sizes": ["XS", "S", "M", "L", "XL"],
+    "isNew": false,
+    "isBestSeller": false,
+    "dateAdded": "2026-01-15",
+    "images": [
+      "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=900&q=80",
+      "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=900&q=80"
+    ],
+    "description": "A single-breasted blazer in Italian wool with a soft shoulder. Fully canvassed, finished by hand."
+  },
+  {
+    "id": "lx-021",
+    "name": "Platform Sandal",
+    "category": "Footwear",
+    "price": 138,
+    "originalPrice": 172,
+    "discount": 20,
+    "rating": 4.3,
+    "reviews": 44,
+    "colors": ["#141412", "#C9A876"],
+    "sizes": ["36", "37", "38", "39", "40", "41"],
+    "isNew": true,
+    "isBestSeller": false,
+    "dateAdded": "2026-07-02",
+    "images": [
+      "https://images.unsplash.com/photo-1603487742131-4160ec999306?w=900&q=80",
+      "https://images.unsplash.com/photo-1518049362265-d5b2a6467637?w=900&q=80"
+    ],
+    "description": "A sculpted platform sole with a woven leather upper. Grounded, architectural, easy to walk in."
+  },
+  {
+    "id": "lx-022",
+    "name": "Silk Button-Up Shirt",
+    "category": "Shirts",
+    "price": 168,
+    "originalPrice": 168,
+    "discount": 0,
+    "rating": 4.5,
+    "reviews": 51,
+    "colors": ["#C9A876", "#141412", "#FAFAF9"],
+    "sizes": ["XS", "S", "M", "L"],
+    "isNew": false,
+    "isBestSeller": false,
+    "dateAdded": "2026-02-28",
+    "images": [
+      "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=900&q=80",
+      "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=900&q=80"
+    ],
+    "description": "Fluid mulberry silk with a relaxed fit through the body. Finished with a single-button barrel cuff."
+  },
+  {
+    "id": "lx-023",
+    "name": "Mini Top-Handle Bag",
+    "category": "Bags",
+    "price": 265,
+    "originalPrice": 265,
+    "discount": 0,
+    "rating": 4.8,
+    "reviews": 112,
+    "colors": ["#141412", "#C9A876", "#6B6862"],
+    "sizes": ["One Size"],
+    "isNew": true,
+    "isBestSeller": true,
+    "dateAdded": "2026-06-24",
+    "images": [
+      "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=900&q=80",
+      "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=900&q=80"
+    ],
+    "description": "Structured top-handle in polished calfskin with a slim shoulder strap included. Small enough to carry, big enough to matter."
+  },
+  {
+    "id": "lx-024",
+    "name": "Relaxed Chino Trouser",
+    "category": "Bottoms",
+    "price": 112,
+    "originalPrice": 140,
+    "discount": 20,
+    "rating": 4.4,
+    "reviews": 63,
+    "colors": ["#6B6862", "#141412", "#FAFAF9"],
+    "sizes": ["28", "30", "32", "34", "36"],
+    "isNew": false,
+    "isBestSeller": false,
+    "dateAdded": "2026-01-05",
+    "images": [
+      "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=900&q=80",
+      "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=900&q=80"
+    ],
+    "description": "Garment-dyed cotton twill with a tapered relaxed leg. Pre-washed for a broken-in feel from day one."
+  }
+]
