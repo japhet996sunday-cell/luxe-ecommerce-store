@@ -1,4 +1,4 @@
-#Luxe – Premium eCommerce Store
+Luxe – Premium eCommerce Store
 
 A modern, responsive, production-ready eCommerce website built with HTML5, CSS3, and Vanilla JavaScript.
 
@@ -8,13 +8,13 @@ Whether you're building a fashion store, electronics shop, furniture store, cosm
 
 ---
 
-#Live Demo
+Live Demo
 
 Demo: https://luxe-ecommerce-live.netlify.app/
 
 ---
 
-#Features
+Features
 
 - Modern and elegant user interface
 - Fully responsive design
@@ -38,7 +38,7 @@ Demo: https://luxe-ecommerce-live.netlify.app/
 
 ---
 
-#Technologies Used
+Technologies Used
 
 - HTML5
 - CSS3
@@ -50,7 +50,7 @@ No external frameworks or libraries are required.
 
 ---
 
-#Folder Structure
+Folder Structure
 
 luxe-ecommerce-store/
 │
@@ -75,11 +75,35 @@ luxe-ecommerce-store/
     │   ├── products.js
     │   └── wishlist.js
     │
-    └── images/
+    └── screenshots
+
+    # Screenshots
+
+## Home Page
+
+![Home Page](screenshots/Homepage.png)
 
 ---
 
-#Installation
+## Products Page
+
+![Products Page](screenshots/product-listing.png)
+
+---
+
+## Shopping Cart
+
+![Shopping Cart](screenshots/Cart.png)
+
+---
+
+## Wishlist
+
+![Wishlist](screenshots/Wishlist.png)
+
+---
+
+Installation
 
 No build tools are required.
 
@@ -103,7 +127,7 @@ Open the project folder and run it using your preferred local server or open ind
 
 ---
 
-#Customization Guide
+Customization Guide
 
 Colors
 
@@ -139,7 +163,7 @@ Update the navigation links in each HTML page as needed.
 
 ---
 
-#Managing Products
+Managing Products
 
 Product information is stored inside:
 
@@ -165,7 +189,7 @@ To add a new product:
 
 ---
 
-#Browser Support
+Browser Support
 
 Luxe supports all modern browsers, including:
 
@@ -177,7 +201,7 @@ Luxe supports all modern browsers, including:
 
 ---
 
-#Performance
+Performance
 
 The template is optimized for:
 
@@ -191,7 +215,7 @@ For the best results, optimize images before deployment.
 
 ---
 
-#Frequently Asked Questions
+Frequently Asked Questions
 
 Does this template require a backend?
 
@@ -225,7 +249,7 @@ The project is built with clean, organized code for easy customization.
 
 ---
 
-#Deployment
+Deployment
 
 You can deploy this project on:
 
@@ -237,13 +261,13 @@ You can deploy this project on:
 
 ---
 
-#Support
+Support
 
 If you have questions or encounter any issues, please open an issue in the project repository or contact the author.
 
 ---
 
-#Credits
+Credits
 
 Designed and developed by Japhet Sunday.
 
@@ -263,7 +287,7 @@ For complete terms and conditions, see the LICENSE file included with this proje
 
 ---
 
-#Version
+Version
 
 Current Version
 
