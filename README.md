@@ -54,6 +54,9 @@ Folder Structure
 
 luxe-ecommerce-store/
 │
+├── LICENSE
+├── README.md
+├── CHANGELOG.md
 ├── index.html
 ├── products.html
 ├── product.html
@@ -62,20 +65,28 @@ luxe-ecommerce-store/
 ├── wishlist.html
 ├── about.html
 ├── contact.html
-├── README.md
 ├── products.json
 │
-└── assets/
-    ├── css/
-    │   └── style.css
-    │
-    ├── js/
-    │   ├── app.js
-    │   ├── cart.js
-    │   ├── products.js
-    │   └── wishlist.js
-    │
-    └── screenshots
+├── assets/
+│   ├── css/
+│   │   └── style.css
+│   │
+│   ├── js/
+│   │   ├── app.js
+│   │   ├── cart.js
+│   │   ├── products.js
+│   │   └── wishlist.js
+│  
+│ 
+│
+├── screenshots/
+│   ├── home.png
+│   ├── products.png
+│ 
+│   ├── cart.png
+│   ├── wishlist.png
+│   
+
 
     # Screenshots
 
