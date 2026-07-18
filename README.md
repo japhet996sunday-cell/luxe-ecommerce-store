@@ -121,7 +121,7 @@ Option 2
 
 Clone the repository.
 
-git clone https://github.com/your-username/luxe-ecommerce-store.git
+git clone https://github.com/japhet996sunday-cell/luxe-ecommerce-store.git
 
 Open the project folder and run it using your preferred local server or open index.html directly in your browser.
 
