@@ -66,7 +66,7 @@ luxe-ecommerce-store/
 ├── about.html
 ├── contact.html
 ├── products.json
-|——— favicon.ico  
+|——— favicon.png  
 ├── assets/
 │   ├── css/
 │   │   └── style.css
