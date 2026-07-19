@@ -66,7 +66,7 @@ luxe-ecommerce-store/
 ├── about.html
 ├── contact.html
 ├── products.json
-│
+|——— favicon.ico  
 ├── assets/
 │   ├── css/
 │   │   └── style.css
@@ -80,12 +80,12 @@ luxe-ecommerce-store/
 │ 
 │
 ├── screenshots/
-│   ├── home.png
-│   ├── products.png
-│ 
-│   ├── cart.png
-│   ├── wishlist.png
-│   
+│   ├── Home.png
+│   ├── product-listing.png
+│   |——— Cart.png
+│__ ├── Wishlist.png
+
+ 
 
 
     # Screenshots
