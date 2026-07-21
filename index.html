@@ -419,7 +419,27 @@
 <script src="assets/js/products.js"></script>
 <script>
   (async function initHome() {
+  try {
+    alert("1. initHome started");
+
     const products = await LUXE.getProducts();
+
+    if (!products) {
+      alert("ERROR: LUXE.getProducts() returned undefined or null");
+      return;
+    }
+
+    alert("SUCCESS: Products loaded");
+    alert("Number of products: " + products.length);
+
+  } catch (err) {
+    alert(
+      "ERROR:\n\n" +
+      (err.stack || err.message || err)
+    );
+  }
+})();
+  
 
     // Categories (unique, one representative image each)
     const seen = new Map();
