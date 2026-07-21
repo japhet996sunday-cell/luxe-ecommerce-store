@@ -34,7 +34,7 @@ const LUXE = (() => {
   /* ---------- Products ---------- */
   async function getProducts() {
     if (productsCache) return productsCache;
-    const res = await fetch(resolvePath('data/products.json'));
+    const res = await fetch(resolvePath('products.json'));
     if (!res.ok) throw new Error('Failed to load products.json');
     productsCache = await res.json();
     return productsCache;
