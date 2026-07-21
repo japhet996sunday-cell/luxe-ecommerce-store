@@ -433,6 +433,11 @@ alert(typeof LUXEProducts);
 
     const products = await LUXE.getProducts();
 
+alert(
+  "Products loaded: " +
+  (products ? products.length : "undefined")
+);
+
     if (!products) {
       alert("ERROR: LUXE.getProducts() returned undefined or null");
       return;
