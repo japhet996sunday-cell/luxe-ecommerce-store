@@ -33,11 +33,26 @@ const LUXE = (() => {
 
   /* ---------- Products ---------- */
   async function getProducts() {
-    if (productsCache) return productsCache;
-    const res = await fetch(resolvePath('products.json'));
-    if (!res.ok) throw new Error('Failed to load products.json');
-    productsCache = await res.json();
+  if (productsCache) {
+    alert("Using cached products");
     return productsCache;
+  }
+
+  const url = resolvePath('products.json');
+  alert("Fetching: " + url);
+
+  const res = await fetch(url);
+  alert("Fetch status: " + res.status);
+
+  if (!res.ok) {
+    alert("Failed to load products.json");
+    throw new Error('Failed to load products.json');
+  }
+
+  productsCache = await res.json();
+  alert("Loaded " + productsCache.length + " products");
+
+  return productsCache;
   }
 
   function resolvePath(relative) {
