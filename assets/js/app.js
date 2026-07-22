@@ -13,12 +13,14 @@ const LUXE = (() => {
   let productsCache = null;
 
   /* ---------- Storage helpers ---------- */
+  // localStorage can fail (private browsing, quota exceeded, disabled by the
+  // user). We fall back to sane defaults rather than let the error propagate,
+  // since a broken cart/wishlist should never break page rendering.
   function readStorage(key, fallback) {
     try {
       const raw = localStorage.getItem(key);
       return raw ? JSON.parse(raw) : fallback;
     } catch (e) {
-      console.warn('LUXE storage read failed', key, e);
       return fallback;
     }
   }
@@ -27,32 +29,18 @@ const LUXE = (() => {
     try {
       localStorage.setItem(key, JSON.stringify(value));
     } catch (e) {
-      console.warn('LUXE storage write failed', key, e);
+      // Storage unavailable — the in-memory session still works, it just
+      // won't persist across reloads.
     }
   }
 
   /* ---------- Products ---------- */
   async function getProducts() {
-  if (productsCache) {
-    alert("Using cached products");
+    if (productsCache) return productsCache;
+    const res = await fetch(resolvePath('products.json'));
+    if (!res.ok) throw new Error(`Failed to load products.json (${res.status})`);
+    productsCache = await res.json();
     return productsCache;
-  }
-
-  const url = resolvePath('products.json');
-  alert("Fetching: " + url);
-
-  const res = await fetch(url);
-  alert("Fetch status: " + res.status);
-
-  if (!res.ok) {
-    alert("Failed to load products.json");
-    throw new Error('Failed to load products.json');
-  }
-
-  productsCache = await res.json();
-  alert("Loaded " + productsCache.length + " products");
-
-  return productsCache;
   }
 
   function resolvePath(relative) {
@@ -133,6 +121,11 @@ const LUXE = (() => {
 
   function isWishlisted(productId) {
     return getWishlist().some((p) => p.id === productId);
+  }
+
+  function removeFromWishlist(productId) {
+    const list = getWishlist().filter((p) => p.id !== productId);
+    saveWishlist(list);
   }
 
   function toggleWishlist(product) {
@@ -243,7 +236,11 @@ const LUXE = (() => {
       input.value = '';
       results.innerHTML = '';
       setTimeout(() => input.focus(), 100);
-      await getProducts();
+      try {
+        await getProducts();
+      } catch (e) {
+        results.innerHTML = `<p style="padding: var(--sp-3); color: var(--color-stone); font-size: var(--fs-sm);">Search is unavailable right now.</p>`;
+      }
     };
     const close = () => overlay.classList.remove('is-open');
 
@@ -261,14 +258,20 @@ const LUXE = (() => {
       debounceTimer = setTimeout(async () => {
         const q = input.value.trim().toLowerCase();
         if (!q) { results.innerHTML = ''; return; }
-        const products = await getProducts();
+        let products;
+        try {
+          products = await getProducts();
+        } catch (e) {
+          results.innerHTML = `<p style="padding: var(--sp-3); color: var(--color-stone); font-size: var(--fs-sm);">Search is unavailable right now.</p>`;
+          return;
+        }
         const matches = products.filter((p) =>
           p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q)
         ).slice(0, 6);
         results.innerHTML = matches.length
           ? matches.map((p) => `
             <a class="search-result-item" href="${resolvePath('product.html')}?id=${p.id}">
-              <img src="${p.image0 || p.images[0]}" alt="" loading="lazy" width="52" height="52">
+              <img src="${p.images[0]}" alt="" loading="lazy" width="52" height="52">
               <span class="search-result-item__meta">
                 <span class="search-result-item__name">${p.name}</span>
                 <span class="search-result-item__cat">${p.category}</span>
@@ -347,8 +350,7 @@ const LUXE = (() => {
   return {
     getProducts,
     getCart, saveCart, addToCart, removeFromCart, updateCartQty, cartCount, cartSubtotal,
-    getWishlist, isWishlisted, toggleWishlist,
+    getWishlist, isWishlisted, toggleWishlist, removeFromWishlist,
     showToast, resolvePath, initReveal, starIcon, formatPrice, updateBadges,
   };
 })();
- 
