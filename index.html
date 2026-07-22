@@ -415,70 +415,50 @@
   <span class="material-symbols-outlined">arrow_upward</span>
 </button>
 
-  <script>
-alert("HTML is loading");
-</script>
 <script src="assets/js/app.js"></script>
-<script>
-alert(typeof LUXE);
-</script> 
 <script src="assets/js/products.js"></script>
-  <script>
-alert(typeof LUXEProducts);
-  </script>
 <script>
   (async function initHome() {
-  try {
-    alert("1. initHome started");
+    const catRail = document.getElementById('category-rail');
+    const featuredGrid = document.getElementById('featured-grid');
+    const newGrid = document.getElementById('new-grid');
+    const bestsellerGrid = document.getElementById('bestseller-grid');
 
-    const products = await LUXE.getProducts();
-
-alert(
-  "Products loaded: " +
-  (products ? products.length : "undefined")
-);
-
-    if (!products) {
-      alert("ERROR: LUXE.getProducts() returned undefined or null");
+    let products;
+    try {
+      products = await LUXE.getProducts();
+    } catch (e) {
+      const message = '<p style="padding: var(--sp-6) 0; color: var(--color-stone);">We couldn\'t load products right now. Please refresh the page.</p>';
+      if (catRail) catRail.innerHTML = message;
+      if (featuredGrid) featuredGrid.innerHTML = message;
       return;
     }
 
-    alert("SUCCESS: Products loaded");
-    alert("Number of products: " + products.length);
-
-  } catch (err) {
-    alert(
-      "ERROR:\n\n" +
-      (err.stack || err.message || err)
-    );
-  }
-})();
-  
-
     // Categories (unique, one representative image each)
-    const seen = new Map();
-    products.forEach((p) => { if (!seen.has(p.category)) seen.set(p.category, p); });
-    const catRail = document.getElementById('category-rail');
-    catRail.innerHTML = [...seen.entries()].map(([cat, p]) => `
-      <a class="category-tile" href="products.html?category=${encodeURIComponent(cat)}">
-        <img src="${p.images[0]}" alt="${cat}" loading="lazy">
-        <span class="category-tile__label">${cat}</span>
-      </a>
-    `).join('');
+    if (catRail) {
+      const seen = new Map();
+      products.forEach((p) => { if (!seen.has(p.category)) seen.set(p.category, p); });
+      catRail.innerHTML = [...seen.entries()].map(([cat, p]) => `
+        <a class="category-tile" href="products.html?category=${encodeURIComponent(cat)}">
+          <img src="${p.images[0]}" alt="${cat}" loading="lazy">
+          <span class="category-tile__label">${cat}</span>
+        </a>
+      `).join('');
+    }
 
     const featured = products.filter(p => p.isBestSeller).slice(0, 6);
-    const newest = [...products].sort((a,b) => new Date(b.dateAdded) - new Date(a.dateAdded)).slice(0, 3);
+    const newest = [...products].sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded)).slice(0, 3);
     const bestsellers = products.filter(p => p.isBestSeller).slice(0, 3);
 
-    document.getElementById('featured-grid').innerHTML = featured.map(LUXEProducts.renderCard).join('');
-    document.getElementById('new-grid').innerHTML = newest.map(LUXEProducts.renderCard).join('');
-    document.getElementById('bestseller-grid').innerHTML = bestsellers.map(LUXEProducts.renderCard).join('');
+    if (featuredGrid) featuredGrid.innerHTML = featured.map(LUXEProducts.renderCard).join('');
+    if (newGrid) newGrid.innerHTML = newest.map(LUXEProducts.renderCard).join('');
+    if (bestsellerGrid) bestsellerGrid.innerHTML = bestsellers.map(LUXEProducts.renderCard).join('');
 
     LUXEProducts.bindCardEvents(document);
     document.dispatchEvent(new CustomEvent('luxe:content-rendered'));
   })();
 
-  document.getElementById('newsletter-form').addEventListener('submit', (e) => {
+  document.getElementById('newsletter-form')?.addEventListener('submit', (e) => {
     e.preventDefault();
     LUXE.showToast('Subscribed — welcome to LUXE', 'mail');
     e.target.reset();
