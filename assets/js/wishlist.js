@@ -31,6 +31,7 @@ const LUXEWishlist = (() => {
     const gridEl = document.querySelector('[data-wishlist-grid]');
     const emptyEl = document.querySelector('[data-wishlist-empty]');
     const countEl = document.querySelector('[data-wishlist-page-count]');
+    if (!gridEl || !emptyEl) return;
 
     if (countEl) countEl.textContent = `${list.length} saved item${list.length !== 1 ? 's' : ''}`;
 
@@ -44,15 +45,19 @@ const LUXEWishlist = (() => {
     emptyEl.style.display = 'none';
     gridEl.innerHTML = list.map(renderItem).join('');
 
-    const allProducts = await LUXE.getProducts();
+    let allProducts;
+    try {
+      allProducts = await LUXE.getProducts();
+    } catch (e) {
+      // "Move to cart" needs the full catalog to look up current price/variants.
+      // If it can't load, disable that action rather than crash the page.
+      allProducts = [];
+    }
 
     gridEl.querySelectorAll('[data-wish-remove]').forEach((btn) => {
       btn.addEventListener('click', () => {
-        const current = LUXE.getWishlist().filter(p => p.id !== btn.dataset.wishRemove);
-        localStorage.setItem('luxe_wishlist', JSON.stringify(current));
-        LUXE.updateBadges();
+        LUXE.removeFromWishlist(btn.dataset.wishRemove);
         LUXE.showToast('Removed from wishlist', 'heart_minus');
-        renderWishlistPage();
       });
     });
 
@@ -61,10 +66,7 @@ const LUXEWishlist = (() => {
         const product = allProducts.find(p => p.id === btn.dataset.wishMove);
         if (!product) return;
         LUXE.addToCart(product, { size: product.sizes[0], color: product.colors[0], qty: 1 });
-        const current = LUXE.getWishlist().filter(p => p.id !== product.id);
-        localStorage.setItem('luxe_wishlist', JSON.stringify(current));
-        LUXE.updateBadges();
-        renderWishlistPage();
+        LUXE.removeFromWishlist(product.id);
       });
     });
 
