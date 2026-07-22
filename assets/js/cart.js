@@ -86,6 +86,7 @@ const LUXECart = (() => {
     const listEl = document.querySelector('[data-cart-list]');
     const emptyEl = document.querySelector('[data-cart-empty]');
     const summaryEl = document.querySelector('[data-cart-summary]');
+    if (!listEl || !emptyEl || !summaryEl) return;
 
     if (!cart.length) {
       listEl.style.display = 'none';
@@ -129,7 +130,7 @@ const LUXECart = (() => {
   function applyCoupon(code) {
     const upper = code.trim().toUpperCase();
     const feedback = document.querySelector('[data-coupon-feedback]');
-    if (!upper) return;
+    if (!feedback || !upper) return;
     if (COUPONS[upper]) {
       appliedCoupon = upper;
       feedback.textContent = `Applied — ${COUPONS[upper].label}`;
