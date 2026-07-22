@@ -75,44 +75,94 @@ luxe-ecommerce-store/
 │   │   ├── app.js
 │   │   ├── cart.js
 │   │   ├── products.js
-│   │   └── wishlist.js
+│       └── wishlist.js
 │  
-│ 
+|
+|
 │
 ├── screenshots/
-│   ├── Home.png
-│   ├── product-listing.png
-│   |——— Cart.png
-│__ ├── Wishlist.png
+│   ├── Homepage.png
+│   ├── Products-page.png
+│   ├── Cart.png
+│   ├── Wishlist.png
+│   ├── Dark-mode.png
+│   ├── Desktop-view.png
+│   ├── Tablet-view.png
+    └── contact-page.png
+
+
+
 
  
+## 📸 Screenshots
 
+### 🏠 Homepage
 
-    # Screenshots
+![Homepage](screenshots/Homepage.png)
 
-## Home Page
-
-![Home Page](screenshots/Homepage.png)
-
----
-
-## Products Page
-
-![Products Page](screenshots/product-listing.png)
+A premium landing page featuring a full-screen hero banner, featured collections, category highlights, promotional sections, customer testimonials, and newsletter signup.
 
 ---
 
-## Shopping Cart
+### 🛍️ Products Page
 
-![Shopping Cart](screenshots/Cart.png)
+![Products](screenshots/Products-page.png)
+
+Advanced product catalog with category filters, search, sorting, quick view, responsive product grid, and wishlist integration.
+
+---
+
+### 🛒 Shopping Cart
+
+![Cart](screenshots/cart.png)
+
+Interactive shopping cart with quantity controls, coupon support, shipping calculation, tax estimation, and order summary.
 
 ---
 
-## Wishlist
+### ❤️ Wishlist
 
-![Wishlist](screenshots/Wishlist.png)
+![Wishlist](screenshots/wishlist.png)
+
+Save favorite products for later with persistent local storage and one-click add-to-cart functionality.
 
 ---
+
+### 🌙 Dark Mode
+
+![Dark Mode](screenshots/Dark-mode.png)
+
+Fully optimized dark theme with smooth transitions and carefully balanced colors across every page.
+
+---
+
+### 💻 Desktop View
+
+![Desktop](screenshots/Desktop-view.png)
+
+Optimized desktop experience featuring spacious layouts, premium typography, and responsive navigation.
+
+---
+
+### 📱 Tablet View
+
+![Tablet](screenshots/Tablet-view.png)
+
+Responsive tablet layout with adaptive grids, touch-friendly controls, and optimized spacing.
+
+---
+
+### 📞 Contact Page
+
+![Contact](screenshots/Contact-page.png)
+
+Modern contact page with validation-ready contact form, company information, and responsive layout.
+
+---
+
+    
+
+
 
 Installation
 
