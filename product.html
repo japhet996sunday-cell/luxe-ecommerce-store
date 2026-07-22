@@ -262,24 +262,38 @@
   <span class="material-symbols-outlined">arrow_upward</span>
 </button>
 
-<script src="assets/js/app.js"></script>
+
+
+  <script src="assets/js/app.js"></script>
 <script src="assets/js/products.js"></script>
 <script>
 (async function initPDP() {
   const params = new URLSearchParams(window.location.search);
   const id = params.get('id');
-  const products = await LUXE.getProducts();
+  const content = document.getElementById('pdp-content');
+
+  let products;
+  try {
+    products = await LUXE.getProducts();
+  } catch (e) {
+    if (content) {
+      content.innerHTML = `<div class="empty-state" style="grid-column:1/-1;"><h3>We couldn't load this product</h3><p>Please refresh the page to try again.</p></div>`;
+    }
+    return;
+  }
+
   const product = products.find(p => p.id === id) || products[0];
+  if (!product || !content) return;
 
   document.title = `${product.name} — LUXE`;
-  document.querySelector('[data-breadcrumb-current]').textContent = product.name;
+  const breadcrumbCurrent = document.querySelector('[data-breadcrumb-current]');
+  if (breadcrumbCurrent) breadcrumbCurrent.textContent = product.name;
 
   let selectedImage = 0;
   let selectedColor = product.colors[0];
   let selectedSize = product.sizes[0];
   let qty = 1;
 
-  const content = document.getElementById('pdp-content');
   content.innerHTML = `
     <div class="pdp-gallery">
       <div class="pdp-gallery__main">
@@ -402,10 +416,12 @@
   // Related products (same category, excluding self)
   const related = products.filter(p => p.category === product.category && p.id !== product.id).slice(0, 3);
   const relatedGrid = document.getElementById('related-grid');
-  relatedGrid.innerHTML = related.length
-    ? related.map(LUXEProducts.renderCard).join('')
-    : products.filter(p => p.id !== product.id).slice(0, 3).map(LUXEProducts.renderCard).join('');
-  LUXEProducts.bindCardEvents(relatedGrid);
+  if (relatedGrid) {
+    relatedGrid.innerHTML = related.length
+      ? related.map(LUXEProducts.renderCard).join('')
+      : products.filter(p => p.id !== product.id).slice(0, 3).map(LUXEProducts.renderCard).join('');
+    LUXEProducts.bindCardEvents(relatedGrid);
+  }
 
   document.dispatchEvent(new CustomEvent('luxe:content-rendered'));
 })();
