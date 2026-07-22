@@ -10,7 +10,7 @@ Whether you're building a fashion store, electronics shop, furniture store, cosm
 
 Live Demo
 
-Demo: https://luxe-ecommerce-live.netlify.app/
+https://japhet996sunday-cell.github.io/luxe-ecommerce-store/
 
 ---
 
